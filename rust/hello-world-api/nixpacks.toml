@@ -1,8 +1,17 @@
 [phases.setup]
 nixPkgs = ["gcc", "musl", "musl.dev"]
+aptPkgs = ["curl"]
+
+[phases.install]
+cmds = [
+  "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y",
+  "export PATH=\"$PATH:$HOME/.cargo/bin\"",
+  "rustup target add x86_64-unknown-linux-gnu"
+]
 
 [phases.build]
 cmds = [
+  "export PATH=\"$PATH:$HOME/.cargo/bin\"",
   "cargo build --release",
   "mkdir -p bin",
   "cp target/release/hello-world-api bin/"

@@ -28,11 +28,20 @@ docker build -t hello-world-api .
 docker run -p 8080:8080 hello-world-api
 ```
 
-### Using Cloud Platforms
+#### Other PaaS Platforms
+For other PaaS platforms that support Docker:
+1. Push this repository to GitHub
+2. Connect your hosting platform to the GitHub repository
+3. Deploy using the Dockerfile method
 
-This API can be deployed to cloud platforms that support Docker containers or Rust applications.
+## Troubleshooting Deployment Issues
 
-#### Environment Variables
+### Common Issues:
+- **Missing Rust**: The deployment environment may not have Rust installed. The Dockerfile should handle this.
+- **Port Configuration**: Ensure the application is configured to listen on `0.0.0.0` (not `127.0.0.1`) and on the port specified by the environment.
+- **Build Failures**: Check the build logs for specific error messages. The Dockerfile uses a multi-stage build to handle dependencies.
+
+## Environment Variables
 
 - `PORT`: Set the port for the server (default: 8080)
 
