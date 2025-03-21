@@ -1,0 +1,12 @@
+[phases.setup]
+nixPkgs = ["gcc", "musl", "musl.dev"]
+
+[phases.build]
+cmds = [
+  "cargo build --release",
+  "mkdir -p bin",
+  "cp target/release/hello-world-api bin/"
+]
+
+[start]
+cmd = "./bin/hello-world-api" 
